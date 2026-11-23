@@ -1,0 +1,211 @@
+/* Pawplan specific styles */
+.due-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.due {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  animation: due-in 0.5s var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 50ms);
+}
+.due-overdue {
+  border-left: 4px solid var(--err);
+}
+.due-today {
+  border-left: 4px solid var(--warn);
+}
+.due-soon {
+  border-left: 4px solid var(--accent);
+}
+.due-body {
+  display: grid;
+  min-width: 0;
+}
+.due-title {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.cat {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.8rem;
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+.cat[data-cat='Medication'] {
+  background: var(--err-soft);
+  color: var(--err);
+}
+.cat[data-cat='Exercise'] {
+  background: var(--ok-soft);
+  color: var(--ok);
+}
+.cat[data-cat='Health check'] {
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+.due-list.is-compact .due {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  padding: 8px 10px;
+}
+@keyframes due-in {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+}
+@media (max-width: 640px) {
+  .due {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+  .due .btn {
+    grid-column: 2 / -1;
+    justify-self: start;
+  }
+}
+.pet-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Hero */
+.hero-pp {
+  display: grid;
+  gap: 16px;
+}
+.hero-pp-weight .eyebrow {
+  margin: 0 0 4px;
+}
+
+/* Weight chart */
+.wchart {
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+.wchart svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.wchart .grid {
+  stroke: var(--border);
+}
+.wchart .axis {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  fill: var(--muted);
+}
+.wchart .line {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+  stroke-dasharray: 2000;
+  animation: draw 1.4s var(--ease) both;
+}
+.wchart .area {
+  fill: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+.wchart .pt {
+  fill: var(--surface);
+  stroke: var(--accent);
+  stroke-width: 2.5;
+  cursor: pointer;
+  transition: r 0.15s var(--ease);
+}
+.wchart .pt:focus-visible {
+  outline: none;
+  stroke: var(--text);
+}
+.wchart .tip rect {
+  fill: var(--text);
+}
+.wchart .tip text {
+  fill: var(--bg);
+  font-size: 12px;
+  font-family: var(--font);
+}
+.legend i.key-line {
+  height: 3px;
+  vertical-align: 3px;
+  background: var(--accent);
+}
+@keyframes draw {
+  from {
+    stroke-dashoffset: 2000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Pets */
+.pet-card {
+  display: grid;
+  gap: 6px;
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.pet-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.pet-initial {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+}
+.pet-name {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: var(--display-weight);
+  overflow-wrap: anywhere;
+}
+.add-task {
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+.note-input {
+  width: 100%;
+  min-width: 140px;
+  border: 1px solid transparent;
+  background: transparent;
+  font: inherit;
+  padding: 4px 6px;
+  border-radius: var(--radius-sm);
+}
+.note-input:hover,
+.note-input:focus {
+  border-color: var(--border);
+  background: var(--surface);
+}
+@media (prefers-reduced-motion: reduce) {
+  .due,
+  .wchart .line {
+    animation: none;
+  }
+}
