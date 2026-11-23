@@ -2,7 +2,7 @@
 
 A pet care planner: profiles for each animal, recurring care tasks with due and overdue tracking, a care log with notes, and a weight chart. Not veterinary advice.
 
-**Live demo:** [https://pawplan.vercel.app/](https://pawplan.vercel.app/) — runs entirely in your browser; demo data is fictional and labelled.
+**Live demo:** [https://pawplan-planner.vercel.app/](https://pawplan-planner.vercel.app/) — runs entirely in your browser; demo data is fictional and labelled.
 
 ![Landing with today’s care and a weight chart](docs/landing.png)
 
